@@ -1,0 +1,19 @@
+body {
+  background-color: darkseagreen;
+}
+
+h1 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+.button {
+  top: 50%;
+}
+
+.wrapper {
+  text-align: center;
+}
