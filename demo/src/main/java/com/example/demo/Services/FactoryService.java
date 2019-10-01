@@ -29,9 +29,9 @@ public class FactoryService {
     private Integer workerCounter = 0;
     private Integer producedMoney = factory.getAssets();
     private Integer productivity = factory.getProductivity();
-    private String msg2="";
-    private String msg="";
-    private String actmsg="";
+    private String msg2 = "";
+    private String msg = "";
+    private String actmsg = "";
 
 
     public int getWorkers() {
@@ -69,7 +69,7 @@ public class FactoryService {
         producedMoney = factory.getAssets();
         factory.setProductivity(factory.getWorkers() * 30);
         productivity = factory.getProductivity();
-        factory.setRoundCounter(factory.getRoundCounter()+1);
+        factory.setRoundCounter(factory.getRoundCounter() + 1);
     }
 
     public void endTurn() {
@@ -109,17 +109,41 @@ public class FactoryService {
         return factory.getProductivity();
     }
 
-    public void messageUpdater( String message){
-        msg2=msg;
-        msg=actmsg;
-        actmsg=message;
+    public void messageUpdater(String message) {
+        msg2 = msg;
+        msg = actmsg;
+        actmsg = message;
     }
 
-    public String[] messageSender(){
-        String[] messages=new String[3];
-        messages[0]=msg2;
-        messages[1]=msg;
-        messages[2]=actmsg;
+    public String[] messageSender() {
+        String[] messages = new String[3];
+        messages[0] = msg2;
+        messages[1] = msg;
+        messages[2] = actmsg;
         return messages;
+    }
+
+    public Integer[] productPriceSender() {
+        Integer[] prices = new Integer[3];
+        ProductModel apricot = new ProductModel("Apricot Jam");
+        ProductModel strawberry = new ProductModel("Strawberry Jam");
+        ProductModel cherry = new ProductModel("Cherry Jam");
+        prices[0] = apricot.getProductionCost();
+        prices[1] = strawberry.getProductionCost();
+        prices[2] = cherry.getProductionCost();
+        return prices;
+    }
+
+    public Integer[] materialPriceSender() {
+        Integer[] prices = new Integer[4];
+        Apricot apricot = new Apricot();
+        Strawberry strawberry = new Strawberry();
+        Cherry cherry = new Cherry();
+        Sugar sugar= new Sugar();
+        prices[0] = apricot.getPrice();
+        prices[1] = strawberry.getPrice();
+        prices[2] = cherry.getPrice();
+        prices[3]=sugar.getPrice();
+        return prices;
     }
 }

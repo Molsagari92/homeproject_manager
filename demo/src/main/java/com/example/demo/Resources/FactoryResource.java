@@ -92,4 +92,16 @@ public class FactoryResource {
     public String[] sendMessages(){
         return factoryService.messageSender();
     }
+
+    @GetMapping("/productprices")
+    public Integer[] sendProductPrices(){
+        Integer[] prices=factoryService.productPriceSender();
+        return prices;
+    }
+
+    @GetMapping("/materialprices")
+    public Integer[] sendMaterialPrices(){
+        Integer[] prices=factoryService.materialPriceSender();
+        return prices;
+    }
 }

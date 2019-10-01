@@ -11,6 +11,10 @@ public class Sugar extends Material {
         super(200, "Sugar");
     }
 
+    public Integer getPrice(){
+        return 200;
+    }
+
     @Override
     public String getName() {
         return super.getName();

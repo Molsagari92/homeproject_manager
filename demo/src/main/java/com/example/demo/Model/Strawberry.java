@@ -11,6 +11,11 @@ public class Strawberry extends Fruit {
     }
 
     @Override
+    public Integer getPrice() {
+        return 900;
+    }
+
+    @Override
     public String getName() {
         return super.getName();
     }

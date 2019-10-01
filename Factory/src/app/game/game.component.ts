@@ -14,6 +14,8 @@ export class GameComponent implements OnInit {
   materials: number[] = [];
   products: number[] = [];
   history: string[] = [];
+  pprice: number[] = [];
+  mprice: number[] = [];
 
   buyAmount: string;
   buyName: string;
@@ -42,17 +44,23 @@ export class GameComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.springService.getBasics().subscribe(data => {
-      this.data = data;
-    });
+    // this.springService.getBasics().subscribe(data => {
+    //   this.data = data;
+    // });
     forkJoin(
+      this.springService.getBasics(),
       this.springService.getMaterials(),
       this.springService.getProducts(),
-      this.springService.getMessages()
-    ).subscribe(([materials, products, messages]) => {
+      this.springService.getMessages(),
+      this.springService.getProductPrices(),
+      this.springService.getMaterialPrices()
+    ).subscribe(([data, materials, products, messages, pprice, mprice]) => {
+      this.data = data;
       this.materials = materials;
       this.products = products;
       this.history = messages;
+      this.pprice = pprice;
+      this.mprice = mprice;
     });
   }
 
@@ -70,6 +78,9 @@ export class GameComponent implements OnInit {
     this.springService.fireWorker().subscribe(val => {
       this.data[0] = val[0];
       this.data[2] = val[1];
+      this.springService
+        .getMessages()
+        .subscribe(messages => (this.history = messages));
     });
   }
 
@@ -78,10 +89,12 @@ export class GameComponent implements OnInit {
       this.data[1] = number;
       forkJoin(
         this.springService.getMaterials(),
-        this.springService.getProducts()
-      ).subscribe(([materials, products]) => {
+        this.springService.getProducts(),
+        this.springService.getMessages()
+      ).subscribe(([materials, products, messages]) => {
         this.materials = materials;
         this.products = products;
+        this.history = messages;
       });
     });
   }
@@ -91,10 +104,12 @@ export class GameComponent implements OnInit {
       this.data[1] = number;
       forkJoin(
         this.springService.getMaterials(),
-        this.springService.getProducts()
-      ).subscribe(([materials, products]) => {
+        this.springService.getProducts(),
+        this.springService.getMessages()
+      ).subscribe(([materials, products, messages]) => {
         this.materials = materials;
         this.products = products;
+        this.history = messages;
       });
       this.data[2] = this.data[2] - this.produceInfo.amount;
     });
@@ -107,8 +122,10 @@ export class GameComponent implements OnInit {
       this.springService
         .getMaterials()
         .subscribe(materials => (this.materials = materials));
+      this.springService
+        .getMessages()
+        .subscribe(messages => (this.history = messages));
     });
-    console.log(this.materials);
   }
 
   OnClickStartTurn() {
