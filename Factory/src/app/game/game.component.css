@@ -9,6 +9,7 @@
 .sideinfo {
   font-size: 70%;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 table {
@@ -82,4 +83,5 @@ table {
 
 ul {
   text-align: left;
+  margin-bottom: 0;
 }

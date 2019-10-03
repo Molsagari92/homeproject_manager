@@ -65,10 +65,13 @@
       <ul>
         <li>Apricot Jam: {{ products[0] }}</li>
         <p class="sideinfo">(Minimal price: {{ pprice[0] }})</p>
+        <p class="sideinfo">(Maximal price: {{ pprice[0] * 2.5 }})</p>
         <li>Strawberry Jam: {{ products[1] }}</li>
         <p class="sideinfo">(Minimal price: {{ pprice[1] }})</p>
+        <p class="sideinfo">(Maximal price: {{ pprice[1] * 2.5 }})</p>
         <li>Cherry Jam: {{ products[2] }}</li>
         <p class="sideinfo">(Minimal price: {{ pprice[2] }})</p>
+        <p class="sideinfo">(Maximal price: {{ pprice[2] * 2.5 }})</p>
       </ul>
     </td>
     <td>
@@ -122,7 +125,12 @@
         [(ngModel)]="sellInfo.price"
         class="numberfield"
       />
-      <button type="button" name="sell" (click)="OnClickSell()">
+      <button
+        type="button"
+        name="sell"
+        (click)="OnClickSell()"
+        (click)="IsWinner()"
+      >
         Sell selected jam
       </button>
     </td>
@@ -131,10 +139,18 @@
   <br />
 
   <h3>Options</h3>
-  <button type="button" name="close" (click)="OnClickEndTurn()">
+  <button
+    type="button"
+    name="close"
+    (click)="OnClickEndTurn()"
+    (click)="IsLoser()"
+    (click)="IsWinner()"
+  >
     Start a new month!</button
   ><br /><br />
   <a routerLink=""
-    ><button type="button" name="return">Start a new game!</button></a
+    ><button type="button" name="return" (click)="OnClickStartGame()">
+      Start a new game!
+    </button></a
   >
 </table>

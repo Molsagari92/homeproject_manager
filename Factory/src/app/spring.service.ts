@@ -41,13 +41,16 @@ export class SpringService {
       "http://localhost:8081/api/game/messages"
     );
   }
+  startGame() {
+    return this.httpClient.get("http://localhost:8081/api/game/startgame");
+  }
 
   startTurn() {
-    return this.httpClient.get("http://localhost:8081/api/game/startturn");
+    return this.httpClient.get("http://localhost:8081/api/game/startmonth");
   }
 
   endTurn() {
-    return this.httpClient.get("http://localhost:8081/api/game/endturn");
+    return this.httpClient.get("http://localhost:8081/api/game/endmonth");
   }
 
   sendSell(sellInfo) {

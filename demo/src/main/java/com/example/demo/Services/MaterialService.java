@@ -4,8 +4,6 @@ import com.example.demo.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-
 @Service
 public class MaterialService {
 
@@ -14,20 +12,10 @@ public class MaterialService {
 
     @Autowired ProductService productService;
 
-    private ArrayList<Material> boughtMaterials = new ArrayList<>();
-
-    public ArrayList<Material> getBoughtMaterials() {
-        return boughtMaterials;
-    }
-
-    public void setBoughtMaterials(ArrayList<Material> boughtMaterials) {
-        this.boughtMaterials = boughtMaterials;
-    }
-
     public Integer materialAmount(String name) {
         Integer materialAmount = 0;
-        for (int i = 0; i < boughtMaterials.size(); i++) {
-            if (boughtMaterials.get(i).getName().equals(name)) {
+        for (int i = 0; i < factoryService.materials.size(); i++) {
+            if (factoryService.materials.get(i).getName().equals(name)) {
                 materialAmount++;
             }
         }
@@ -38,21 +26,21 @@ public class MaterialService {
         Material material = createMaterial(name);
         Integer realBought=0;
         for (int i = 0; i < amount; i++) {
-            if (factoryService.getProducedMoney() > material.getPrice()) {
-                boughtMaterials.add(material);
-                factoryService.setProducedMoney(factoryService.getProducedMoney()-material.getPrice());
+            if (factoryService.getMoney() > material.getPrice()) {
+                factoryService.materials.add(material);
+                factoryService.setMoney(factoryService.getMoney()-material.getPrice());
                 realBought++;
             }
         }
         factoryService.messageUpdater("You bought "+ realBought + " of "+ name+" for "+material.getPrice()*realBought);
-        return factoryService.getProducedMoney();
+        return factoryService.getMoney();
     }
 
     public void removeMaterial(String name, int amount) {
         while (amount > 0) {
-            for (int i = 0; i < boughtMaterials.size(); i++) {
-                if (boughtMaterials.get(i).getName().equals(name)) {
-                    boughtMaterials.remove(i);
+            for (int i = 0; i < factoryService.materials.size(); i++) {
+                if (factoryService.materials.get(i).getName().equals(name)) {
+                    factoryService.materials.remove(i);
                     break;
                 }
             }

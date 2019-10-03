@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { SpringService } from "../spring.service";
 import { Observable, forkJoin } from "rxjs";
+import { RouteConfigLoadEnd, Router } from "@angular/router";
 
 @Component({
   selector: "app-game",
@@ -8,9 +9,9 @@ import { Observable, forkJoin } from "rxjs";
   styleUrls: ["./game.component.css"]
 })
 export class GameComponent implements OnInit {
-  constructor(private springService: SpringService) {}
+  constructor(private springService: SpringService, private router: Router) {}
 
-  data: any;
+  data: any = [];
   materials: number[] = [];
   products: number[] = [];
   history: string[] = [];
@@ -47,6 +48,10 @@ export class GameComponent implements OnInit {
     // this.springService.getBasics().subscribe(data => {
     //   this.data = data;
     // });
+    this.GetData();
+  }
+
+  GetData() {
     forkJoin(
       this.springService.getBasics(),
       this.springService.getMaterials(),
@@ -87,31 +92,15 @@ export class GameComponent implements OnInit {
   OnClickSell() {
     this.springService.sendSell(this.sellInfo).subscribe(number => {
       this.data[1] = number;
-      forkJoin(
-        this.springService.getMaterials(),
-        this.springService.getProducts(),
-        this.springService.getMessages()
-      ).subscribe(([materials, products, messages]) => {
-        this.materials = materials;
-        this.products = products;
-        this.history = messages;
-      });
+      this.GetData();
     });
   }
 
   OnClickProduce() {
     this.springService.sendProduce(this.produceInfo).subscribe(number => {
-      this.data[1] = number;
-      forkJoin(
-        this.springService.getMaterials(),
-        this.springService.getProducts(),
-        this.springService.getMessages()
-      ).subscribe(([materials, products, messages]) => {
-        this.materials = materials;
-        this.products = products;
-        this.history = messages;
-      });
-      this.data[2] = this.data[2] - this.produceInfo.amount;
+      this.data[2] = number;
+      console.log(number);
+      this.GetData();
     });
   }
 
@@ -128,12 +117,31 @@ export class GameComponent implements OnInit {
     });
   }
 
-  OnClickStartTurn() {
-    this.springService.startTurn().subscribe();
+  OnClickStartGame() {
+    this.springService.startGame().subscribe();
   }
 
   OnClickEndTurn() {
-    this.springService.endTurn().subscribe();
-    this.OnClickStartTurn();
+    this.springService
+      .endTurn()
+      .subscribe(() =>
+        this.springService
+          .startTurn()
+          .subscribe(() =>
+            this.springService.getMessages().subscribe(() => this.GetData())
+          )
+      );
+  }
+
+  IsWinner() {
+    if (this.data[1] >= 2000000) {
+      alert("Congratulation, you won! :)");
+    }
+  }
+
+  IsLoser() {
+    if (this.data[1] <= 0) {
+      alert("You lost! :(");
+    }
   }
 }

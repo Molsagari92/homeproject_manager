@@ -1,8 +1,6 @@
 package com.example.demo.Services;
 
 import com.example.demo.Model.*;
-import com.example.demo.Repositories.MaterialRepository;
-import com.example.demo.Repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,44 +12,50 @@ import java.util.List;
 public class FactoryService {
 
     @Autowired
-    private MaterialRepository materialRepository;
-
-    @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
     private MaterialService materialService;
 
     @Autowired
     private ProductService productService;
 
-    private FactoryModel factory = new FactoryModel();
-    private Integer workerCounter = 0;
-    private Integer producedMoney = factory.getAssets();
-    private Integer productivity = factory.getProductivity();
-    private String msg2 = "";
-    private String msg = "";
-    private String actmsg = "";
+    private FactoryModel factory;
+    private Integer workers;
+    private Integer money;
+    private Integer productivity=0;
+    private String msg2;
+    private String msg;
+    private String actmsg;
+    public List<Material> materials=new ArrayList<>();
+    public List<ProductModel> products=new ArrayList<>();
 
-
-    public int getWorkers() {
-        return this.workerCounter;
+    public void startGame() {
+        factory = new FactoryModel();
+        workers = factory.getWorkers();
+        money = factory.getAssets();
+        productivity = factory.getProductivity();
+        msg2 = "";
+        msg = "";
+        actmsg = "";
     }
 
-    public int getMoney() {
-        return producedMoney;
+
+    public Integer getWorkers() {
+        return workers;
     }
 
-    public int getProductivity() {
+    public Integer getProductivity() {
         return productivity;
     }
 
-    public int getProducedMoney() {
-        return producedMoney;
+    public Integer getMoney() {
+        return money;
     }
 
-    public void setProducedMoney(int amount) {
-        producedMoney = amount;
+    public void setMoney(Integer amount) {
+        money = amount;
+    }
+
+    public void setProductivity(Integer number){
+        productivity=number;
     }
 
     public FactoryModel getFactory() {
@@ -63,51 +67,42 @@ public class FactoryService {
     }
 
     public void startTurn() {
-        workerCounter = factory.getWorkers();
-        productService.setProduced(productRepository.getList());
-        materialService.setBoughtMaterials(materialRepository.getList());
-        producedMoney = factory.getAssets();
-        factory.setProductivity(factory.getWorkers() * 30);
+        workers = factory.getWorkers();
+        money = factory.getAssets() - factory.getWorkers() * 50000;
         productivity = factory.getProductivity();
         factory.setRoundCounter(factory.getRoundCounter() + 1);
+        messageUpdater("You started round " + factory.getRoundCounter());
     }
 
     public void endTurn() {
-        materialRepository.setList(materialService.getBoughtMaterials());
-        productRepository.setList(productService.getProduced());
-        producedMoney = producedMoney - (workerCounter * 50000);
-        this.factory.setAssets(producedMoney);
-        this.factory.setWorkers(workerCounter);
+        money = money - (workers * 50000);
+        this.factory.setAssets(money);
+        this.factory.setWorkers(workers);
+        this.factory.setProductivity(workers*30);
     }
 
     public Integer[] addWorker() {
-        workerCounter++;
-        factory.setProductivity(factory.getProductivity() + 30);
-        productivity = factory.getProductivity();
-        Integer[] result = {workerCounter, productivity};
+        workers++;
+        productivity = productivity + 30;
+        Integer[] result = {workers, productivity};
         messageUpdater("You hired a new worker!");
         return result;
     }
 
     public Integer[] fireWorker() {
-        if (workerCounter > 0) {
-            workerCounter--;
-            if (factory.getProductivity() >= 30) {
-                factory.setProductivity(factory.getProductivity() - 30);
+        if (workers > 0) {
+            workers--;
+            if (productivity >= 30) {
+                productivity=productivity-30;
             } else {
-                factory.setProductivity(0);
+                productivity=0;
             }
-            productivity = factory.getProductivity();
         }
-        Integer[] result = {workerCounter, productivity};
+        Integer[] result = {workers, productivity};
         messageUpdater("You fired a worker");
         return result;
     }
 
-    public int setProductivity(int productivity) {
-        factory.setProductivity(productivity);
-        return factory.getProductivity();
-    }
 
     public void messageUpdater(String message) {
         msg2 = msg;
@@ -125,25 +120,19 @@ public class FactoryService {
 
     public Integer[] productPriceSender() {
         Integer[] prices = new Integer[3];
-        ProductModel apricot = new ProductModel("Apricot Jam");
-        ProductModel strawberry = new ProductModel("Strawberry Jam");
-        ProductModel cherry = new ProductModel("Cherry Jam");
-        prices[0] = apricot.getProductionCost();
-        prices[1] = strawberry.getProductionCost();
-        prices[2] = cherry.getProductionCost();
+        prices[0] = new ProductModel("Apricot Jam").getProductionCost();
+        prices[1] =new ProductModel("Strawberry Jam").getProductionCost();
+        prices[2] = new ProductModel("Cherry Jam").getProductionCost();
         return prices;
     }
 
     public Integer[] materialPriceSender() {
         Integer[] prices = new Integer[4];
-        Apricot apricot = new Apricot();
-        Strawberry strawberry = new Strawberry();
-        Cherry cherry = new Cherry();
-        Sugar sugar= new Sugar();
-        prices[0] = apricot.getPrice();
-        prices[1] = strawberry.getPrice();
-        prices[2] = cherry.getPrice();
-        prices[3]=sugar.getPrice();
+        prices[0] =new Apricot().getPrice();
+        prices[1] =new Strawberry().getPrice();
+        prices[2] =new Cherry().getPrice();
+        prices[3] =new Sugar().getPrice();
         return prices;
     }
+
 }

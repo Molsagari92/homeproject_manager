@@ -2,6 +2,8 @@ package com.example.demo.Model;
 
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class FactoryModel {
     private Integer assets;
@@ -33,7 +35,7 @@ public class FactoryModel {
     }
 
     public Integer getWorkers() {
-        return workers;
+        return Optional.ofNullable(workers).orElse(0);
     }
 
     public void setWorkers(Integer workers) {
@@ -41,7 +43,7 @@ public class FactoryModel {
     }
 
     public Integer getProductivity() {
-        return productivity;
+        return Optional.ofNullable(productivity).orElse(0);
     }
 
     public void setProductivity(Integer productivity) {

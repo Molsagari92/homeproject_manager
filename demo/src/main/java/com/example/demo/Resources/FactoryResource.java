@@ -22,6 +22,7 @@ public class FactoryResource {
     @Autowired
     private ProductService productService;
 
+
     @GetMapping("/startmonth")
     public void startMonth() {
         factoryService.startTurn();
@@ -29,7 +30,7 @@ public class FactoryResource {
 
     @GetMapping("/endmonth")
     public void endMonth() {
-        factoryService.startTurn();
+        factoryService.endTurn();
     }
 
     @GetMapping("/getbasics")
@@ -37,7 +38,7 @@ public class FactoryResource {
         Integer[] data = new Integer[3];
         data[0] = factoryService.getWorkers();
         data[1] = factoryService.getMoney();
-        data[2] = factoryService.getFactory().getProductivity();
+        data[2] = factoryService.getProductivity();
         return data;
     }
 
@@ -60,6 +61,11 @@ public class FactoryResource {
         return data;
     }
 
+    @GetMapping("/startgame")
+    public void startGame() {
+        factoryService.startGame();
+    }
+
     @GetMapping("/hireworker")
     public Integer[] hireWorker() {
         return factoryService.addWorker();
@@ -73,35 +79,35 @@ public class FactoryResource {
     @PostMapping("/buymaterial")
     public Integer buyMaterial(@RequestBody BuyDTO buyDTO) {
         materialService.buyMaterial(buyDTO.getName(), buyDTO.getAmount());
-        return factoryService.getProducedMoney();
+        return factoryService.getMoney();
     }
 
     @PostMapping("/createproduct")
     public Integer createProduct(@RequestBody ProduceDTO produceDTO) {
         productService.produce(produceDTO.getName(), produceDTO.getAmount());
-        return factoryService.getProducedMoney();
+        return factoryService.getProductivity();
     }
 
     @PostMapping("/sellproduct")
     public Integer sellProduct(@RequestBody SellDTO sellDTO) {
         productService.sell(sellDTO.getName(), sellDTO.getPrice(), sellDTO.getAmount());
-        return factoryService.getProducedMoney();
+        return factoryService.getMoney();
     }
 
     @GetMapping("/messages")
-    public String[] sendMessages(){
+    public String[] sendMessages() {
         return factoryService.messageSender();
     }
 
     @GetMapping("/productprices")
-    public Integer[] sendProductPrices(){
-        Integer[] prices=factoryService.productPriceSender();
+    public Integer[] sendProductPrices() {
+        Integer[] prices = factoryService.productPriceSender();
         return prices;
     }
 
     @GetMapping("/materialprices")
-    public Integer[] sendMaterialPrices(){
-        Integer[] prices=factoryService.materialPriceSender();
+    public Integer[] sendMaterialPrices() {
+        Integer[] prices = factoryService.materialPriceSender();
         return prices;
     }
 }
