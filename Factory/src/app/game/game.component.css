@@ -48,7 +48,7 @@ button {
   font-family: Arial;
   font-size: 20px;
   font-weight: bold;
-  padding: 13px 32px;
+  padding: 13px 20px;
   text-decoration: none;
   text-shadow: 0px 1px 0px #3d768a;
 }
@@ -75,6 +75,7 @@ button {
 
 h3 {
   text-align: center;
+  margin-top: 15px;
 }
 
 table {
@@ -84,4 +85,8 @@ table {
 ul {
   text-align: left;
   margin-bottom: 0;
+}
+
+tr {
+  margin-top: 15px;
 }

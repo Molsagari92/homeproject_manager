@@ -1,4 +1,4 @@
-package com.example.demo.Model.DTOs;
+package com.example.demo.model.DTOs;
 
 public class SellDTO {
 

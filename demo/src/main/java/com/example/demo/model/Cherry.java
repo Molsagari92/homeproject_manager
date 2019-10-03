@@ -1,7 +1,4 @@
-package com.example.demo.Model;
-
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
+package com.example.demo.model;
 
 
 public class Cherry extends Fruit {

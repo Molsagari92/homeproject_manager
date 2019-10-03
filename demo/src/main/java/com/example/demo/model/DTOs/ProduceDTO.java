@@ -1,11 +1,12 @@
-package com.example.demo.Model.DTOs;
+package com.example.demo.model.DTOs;
 
-public class BuyDTO {
+public class ProduceDTO {
+
     private String name;
     private Integer amount;
 
-    public BuyDTO(String material, Integer amount) {
-        this.name = material;
+    public ProduceDTO(String name, Integer amount) {
+        this.name = name;
         this.amount = amount;
     }
 
@@ -13,8 +14,8 @@ public class BuyDTO {
         return name;
     }
 
-    public void setName(String material) {
-        this.name = material;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getAmount() {

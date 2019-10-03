@@ -45,9 +45,6 @@ export class GameComponent implements OnInit {
   };
 
   ngOnInit() {
-    // this.springService.getBasics().subscribe(data => {
-    //   this.data = data;
-    // });
     this.GetData();
   }
 
@@ -99,7 +96,6 @@ export class GameComponent implements OnInit {
   OnClickProduce() {
     this.springService.sendProduce(this.produceInfo).subscribe(number => {
       this.data[2] = number;
-      console.log(number);
       this.GetData();
     });
   }

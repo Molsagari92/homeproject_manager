@@ -1,11 +1,11 @@
-package com.example.demo.Resources;
+package com.example.demo.resources;
 
-import com.example.demo.Model.DTOs.BuyDTO;
-import com.example.demo.Model.DTOs.ProduceDTO;
-import com.example.demo.Model.DTOs.SellDTO;
-import com.example.demo.Services.FactoryService;
-import com.example.demo.Services.MaterialService;
-import com.example.demo.Services.ProductService;
+import com.example.demo.model.DTOs.BuyDTO;
+import com.example.demo.model.DTOs.ProduceDTO;
+import com.example.demo.model.DTOs.SellDTO;
+import com.example.demo.services.FactoryService;
+import com.example.demo.services.MaterialService;
+import com.example.demo.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

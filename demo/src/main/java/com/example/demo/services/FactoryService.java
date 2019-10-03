@@ -1,6 +1,6 @@
-package com.example.demo.Services;
+package com.example.demo.services;
 
-import com.example.demo.Model.*;
+import com.example.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +20,12 @@ public class FactoryService {
     private FactoryModel factory;
     private Integer workers;
     private Integer money;
-    private Integer productivity=0;
+    private Integer productivity = 0;
     private String msg2;
     private String msg;
     private String actmsg;
-    public List<Material> materials=new ArrayList<>();
-    public List<ProductModel> products=new ArrayList<>();
+    public List<Material> materials = new ArrayList<>();
+    public List<ProductModel> products = new ArrayList<>();
 
     public void startGame() {
         factory = new FactoryModel();
@@ -35,6 +35,8 @@ public class FactoryService {
         msg2 = "";
         msg = "";
         actmsg = "";
+        products.clear();
+        materials.clear();
     }
 
 
@@ -54,8 +56,8 @@ public class FactoryService {
         money = amount;
     }
 
-    public void setProductivity(Integer number){
-        productivity=number;
+    public void setProductivity(Integer number) {
+        productivity = number;
     }
 
     public FactoryModel getFactory() {
@@ -78,7 +80,7 @@ public class FactoryService {
         money = money - (workers * 50000);
         this.factory.setAssets(money);
         this.factory.setWorkers(workers);
-        this.factory.setProductivity(workers*30);
+        this.factory.setProductivity(workers * 30);
     }
 
     public Integer[] addWorker() {
@@ -93,9 +95,9 @@ public class FactoryService {
         if (workers > 0) {
             workers--;
             if (productivity >= 30) {
-                productivity=productivity-30;
+                productivity = productivity - 30;
             } else {
-                productivity=0;
+                productivity = 0;
             }
         }
         Integer[] result = {workers, productivity};
@@ -121,17 +123,17 @@ public class FactoryService {
     public Integer[] productPriceSender() {
         Integer[] prices = new Integer[3];
         prices[0] = new ProductModel("Apricot Jam").getProductionCost();
-        prices[1] =new ProductModel("Strawberry Jam").getProductionCost();
+        prices[1] = new ProductModel("Strawberry Jam").getProductionCost();
         prices[2] = new ProductModel("Cherry Jam").getProductionCost();
         return prices;
     }
 
     public Integer[] materialPriceSender() {
         Integer[] prices = new Integer[4];
-        prices[0] =new Apricot().getPrice();
-        prices[1] =new Strawberry().getPrice();
-        prices[2] =new Cherry().getPrice();
-        prices[3] =new Sugar().getPrice();
+        prices[0] = new Apricot().getPrice();
+        prices[1] = new Strawberry().getPrice();
+        prices[2] = new Cherry().getPrice();
+        prices[3] = new Sugar().getPrice();
         return prices;
     }
 

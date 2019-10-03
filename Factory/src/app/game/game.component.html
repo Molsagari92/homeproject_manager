@@ -8,10 +8,20 @@
     <td>
       <h3>Human Resources</h3>
 
-      <button type="button" name="addWorker" (click)="OnClickAdd()">
+      <button
+        class="myButton"
+        type="button"
+        name="addWorker"
+        (click)="OnClickAdd()"
+      >
         Hire worker
       </button>
-      <button type="button" name="removeWorker" (click)="OnClickDelete()">
+      <button
+        class="myButton"
+        type="button"
+        name="removeWorker"
+        (click)="OnClickDelete()"
+      >
         Fire worker
       </button>
     </td>
@@ -54,7 +64,7 @@
         <option id="3" name="Cherry" value="Cherry">Cherry</option>
         <option id="4" name="Sugar" value="Sugar">Sugar</option>
       </select>
-      <button type="button" name="buy" (click)="OnClickBuy()">
+      <button class="myButton" type="button" name="buy" (click)="OnClickBuy()">
         Buy selected materials
       </button>
     </td>
@@ -94,7 +104,12 @@
         >
         <option id="3" name="Cherry Jam" value="Cherry Jam">Cherry Jam</option>
       </select>
-      <button type="button" name="produce" (click)="OnClickProduce()">
+      <button
+        class="myButton"
+        type="button"
+        name="produce"
+        (click)="OnClickProduce()"
+      >
         Produce selected jam
       </button>
     </td>
@@ -126,6 +141,7 @@
         class="numberfield"
       />
       <button
+        class="myButton"
         type="button"
         name="sell"
         (click)="OnClickSell()"
@@ -140,6 +156,7 @@
 
   <h3>Options</h3>
   <button
+    class="myButton"
     type="button"
     name="close"
     (click)="OnClickEndTurn()"
@@ -149,7 +166,12 @@
     Start a new month!</button
   ><br /><br />
   <a routerLink=""
-    ><button type="button" name="return" (click)="OnClickStartGame()">
+    ><button
+      class="myButton"
+      type="button"
+      name="return"
+      (click)="OnClickStartGame()"
+    >
       Start a new game!
     </button></a
   >
