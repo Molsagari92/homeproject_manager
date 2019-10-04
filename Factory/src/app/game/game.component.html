@@ -1,178 +1,191 @@
-<table>
-  <tr>
-    <td class="infos">
-      <div>Currently you have {{ data[0] }} workers.</div>
-      <div>Your current amount of money: {{ data[1] }} HUF</div>
-      <div>In this month remaining productivity is: {{ data[2] }}</div>
-    </td>
-    <td>
-      <h3>Human Resources</h3>
+<body>
+  <table>
+    <tr>
+      <td class="infos">
+        <div>Currently you have {{ data[0] }} workers.</div>
+        <div>Your current amount of money: {{ data[1] }} HUF</div>
+        <div>In this month remaining productivity is: {{ data[2] }}</div>
+        <h3>Human Resources</h3>
 
-      <button
-        class="myButton"
-        type="button"
-        name="addWorker"
-        (click)="OnClickAdd()"
-      >
-        Hire worker
-      </button>
-      <button
-        class="myButton"
-        type="button"
-        name="removeWorker"
-        (click)="OnClickDelete()"
-      >
-        Fire worker
-      </button>
-    </td>
-    <td>
-      <h3>History</h3>
-      <div>{{ history[0] }}</div>
-      <div>{{ history[1] }}</div>
-      <div>{{ history[2] }}</div>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div>Materials:</div>
-      <ul>
-        <li>Apricot: {{ materials[0] }}</li>
-        <p class="sideinfo">Price: {{ mprice[0] }} HUF</p>
-        <li>Strawberry: {{ materials[1] }}</li>
-        <p class="sideinfo">Price: {{ mprice[1] }} HUF</p>
-        <li>Cherry: {{ materials[2] }}</li>
-        <p class="sideinfo">Price: {{ mprice[2] }} HUF</p>
-        <li>Sugar: {{ materials[3] }}</li>
-        <p class="sideinfo">Price: {{ mprice[3] }} HUF</p>
-      </ul>
-    </td>
-    <td>
-      <h3>Buy Materials</h3>
-
-      I want to buy...
-      <input
-        type="number"
-        class="numberfield"
-        name="buyAmount"
-        min="0"
-        id="0"
-        [(ngModel)]="materialInfo.amount"
-      />
-      <select [(ngModel)]="materialInfo.name" class="selector">
-        <option id="1" name="Apricot" value="Apricot">Apricot</option>
-        <option id="2" name="Strawberry" value="Strawberry">Strawberry</option>
-        <option id="3" name="Cherry" value="Cherry">Cherry</option>
-        <option id="4" name="Sugar" value="Sugar">Sugar</option>
-      </select>
-      <button class="myButton" type="button" name="buy" (click)="OnClickBuy()">
-        Buy selected materials
-      </button>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div>Products:</div>
-      <ul>
-        <li>Apricot Jam: {{ products[0] }}</li>
-        <p class="sideinfo">(Minimal price: {{ pprice[0] }})</p>
-        <p class="sideinfo">(Maximal price: {{ pprice[0] * 2.5 }})</p>
-        <li>Strawberry Jam: {{ products[1] }}</li>
-        <p class="sideinfo">(Minimal price: {{ pprice[1] }})</p>
-        <p class="sideinfo">(Maximal price: {{ pprice[1] * 2.5 }})</p>
-        <li>Cherry Jam: {{ products[2] }}</li>
-        <p class="sideinfo">(Minimal price: {{ pprice[2] }})</p>
-        <p class="sideinfo">(Maximal price: {{ pprice[2] * 2.5 }})</p>
-      </ul>
-    </td>
-    <td>
-      <h3>Production</h3>
-
-      I want to produce...<input
-        type="number"
-        class="numberfield"
-        name="produceAmount"
-        min="0"
-        id="0"
-        [(ngModel)]="produceInfo.amount"
-      />
-      <select [(ngModel)]="produceInfo.name" class="selector">
-        <option id="1" name="Apricot Jam" value="Apricot Jam"
-          >Apricot Jam</option
+        <button
+          class="myButton"
+          type="button"
+          name="addWorker"
+          (click)="OnClickAdd()"
         >
-        <option id="2" name="Strawberry Jam" value="Strawberry Jam"
-          >Strawberry Jam</option
+          Hire worker
+        </button>
+        <button
+          class="myButton"
+          type="button"
+          name="removeWorker"
+          (click)="OnClickDelete()"
         >
-        <option id="3" name="Cherry Jam" value="Cherry Jam">Cherry Jam</option>
-      </select>
-      <button
-        class="myButton"
-        type="button"
-        name="produce"
-        (click)="OnClickProduce()"
-      >
-        Produce selected jam
-      </button>
-    </td>
-    <td>
-      <h3>Sell products</h3>
+          Fire worker
+        </button>
+      </td>
 
-      I want to sell...<input
-        type="number"
-        name="amount"
-        min="0"
-        [(ngModel)]="sellInfo.amount"
-        class="numberfield"
-      />
-      <select name="product" [(ngModel)]="sellInfo.name" class="selector">
-        <option id="1" name="Apricot Jam" value="Apricot Jam"
-          >Apricot Jam</option
+      <td class="tdbase">
+        <div>Materials:</div>
+        <ul>
+          <li>Apricot: {{ materials[0] }}</li>
+          <p class="sideinfo">Price: {{ mprice[0] }} HUF</p>
+          <li>Strawberry: {{ materials[1] }}</li>
+          <p class="sideinfo">Price: {{ mprice[1] }} HUF</p>
+          <li>Cherry: {{ materials[2] }}</li>
+          <p class="sideinfo">Price: {{ mprice[2] }} HUF</p>
+          <li>Sugar: {{ materials[3] }}</li>
+          <p class="sideinfo">Price: {{ mprice[3] }} HUF</p>
+        </ul>
+      </td>
+      <td class="tdbase">
+        <div>Products:</div>
+        <ul>
+          <li>Apricot Jam: {{ products[0] }}</li>
+          <p class="sideinfo">(Minimal price: {{ pprice[0] }})</p>
+          <p class="sideinfo">(Maximal price: {{ pprice[0] * 2.5 }})</p>
+          <li>Strawberry Jam: {{ products[1] }}</li>
+          <p class="sideinfo">(Minimal price: {{ pprice[1] }})</p>
+          <p class="sideinfo">(Maximal price: {{ pprice[1] * 2.5 }})</p>
+          <li>Cherry Jam: {{ products[2] }}</li>
+          <p class="sideinfo">(Minimal price: {{ pprice[2] }})</p>
+          <p class="sideinfo">(Maximal price: {{ pprice[2] * 2.5 }})</p>
+        </ul>
+      </td>
+      <td class="tdbase">
+        <h3>Buy Materials</h3>
+
+        I want to buy...
+        <input
+          type="number"
+          class="numberfield"
+          name="buyAmount"
+          min="0"
+          id="0"
+          [(ngModel)]="materialInfo.amount"
+        />
+        <select [(ngModel)]="materialInfo.name" class="selector">
+          <option id="1" name="Apricot" value="Apricot">Apricot</option>
+          <option id="2" name="Strawberry" value="Strawberry"
+            >Strawberry</option
+          >
+          <option id="3" name="Cherry" value="Cherry">Cherry</option>
+          <option id="4" name="Sugar" value="Sugar">Sugar</option>
+        </select>
+        <button
+          class="myButton"
+          type="button"
+          name="buy"
+          (click)="OnClickBuy()"
         >
-        <option id="2" name="Strawberry Jam" value="Strawberry Jam"
-          >Strawberry Jam</option
+          Buy selected materials
+        </button>
+        <h3>Production</h3>
+
+        I want to produce...<input
+          type="number"
+          class="numberfield"
+          name="produceAmount"
+          min="0"
+          id="0"
+          [(ngModel)]="produceInfo.amount"
+        />
+        <select [(ngModel)]="produceInfo.name" class="selector">
+          <option id="1" name="Apricot Jam" value="Apricot Jam"
+            >Apricot Jam</option
+          >
+          <option id="2" name="Strawberry Jam" value="Strawberry Jam"
+            >Strawberry Jam</option
+          >
+          <option id="3" name="Cherry Jam" value="Cherry Jam"
+            >Cherry Jam</option
+          >
+        </select>
+        <button
+          class="myButton"
+          type="button"
+          name="produce"
+          (click)="OnClickProduce()"
         >
-        <option id="3" name="Cherry Jam" value="Cherry Jam">Cherry Jam</option>
-      </select>
-      for
-      <input
-        type="number"
-        name="price"
-        min="0"
-        [(ngModel)]="sellInfo.price"
-        class="numberfield"
-      />
-      <button
-        class="myButton"
-        type="button"
-        name="sell"
-        (click)="OnClickSell()"
-        (click)="IsWinner()"
-      >
-        Sell selected jam
-      </button>
-    </td>
-  </tr>
+          Produce selected jam
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td class="tdbase">
+        <h3>History</h3>
+        <div>{{ history[0] }}</div>
+        <div>{{ history[1] }}</div>
+        <div>{{ history[2] }}</div>
+      </td>
 
-  <br />
-
-  <h3>Options</h3>
-  <button
-    class="myButton"
-    type="button"
-    name="close"
-    (click)="OnClickEndTurn()"
-    (click)="IsLoser()"
-    (click)="IsWinner()"
-  >
-    Start a new month!</button
-  ><br /><br />
-  <a routerLink=""
-    ><button
-      class="myButton"
-      type="button"
-      name="return"
-      (click)="OnClickStartGame()"
-    >
-      Start a new game!
-    </button></a
-  >
-</table>
+      <td class="tdoptions">
+        <h3>Options</h3>
+        <button
+          class="myButton"
+          type="button"
+          name="close"
+          (click)="OnClickEndTurn()"
+          (click)="IsLoser()"
+          (click)="IsWinner()"
+        >
+          Start a new month!</button
+        ><br />
+        <a routerLink=""
+          ><button
+            class="myButton"
+            type="button"
+            name="return"
+            (click)="OnClickStartGame()"
+          >
+            Start a new game!
+          </button></a
+        >
+        <a routerLink=""
+          ><button class="myButton" type="button" name="menu">
+            Return to main menu
+          </button></a
+        >
+      </td>
+      <td class="haveto"></td>
+      <td class="tdbase">
+        <h3>Sell products</h3>
+        I want to sell...<input
+          type="number"
+          name="amount"
+          min="0"
+          [(ngModel)]="sellInfo.amount"
+          class="numberfield"
+        />
+        <select name="product" [(ngModel)]="sellInfo.name" class="selector">
+          <option id="1" name="Apricot Jam" value="Apricot Jam"
+            >Apricot Jam</option
+          >
+          <option id="2" name="Strawberry Jam" value="Strawberry Jam"
+            >Strawberry Jam</option
+          >
+          <option id="3" name="Cherry Jam" value="Cherry Jam"
+            >Cherry Jam</option
+          >
+        </select>
+        for
+        <input
+          type="number"
+          name="price"
+          min="0"
+          [(ngModel)]="sellInfo.price"
+          class="numberfield"
+        />
+        <button
+          class="myButton"
+          type="button"
+          name="sell"
+          (click)="OnClickSell()"
+          (click)="IsWinner()"
+        >
+          Sell selected jam
+        </button>
+      </td>
+    </tr>
+  </table>
+</body>

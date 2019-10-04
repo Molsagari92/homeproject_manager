@@ -35,6 +35,12 @@ public class ProductService {
                 materialService.removeMaterial("Sugar", 1);
                 factoryService.setProductivity(factoryService.getProductivity() - 1);
                 realProduced++;
+            } else if(fruitAmount<3){
+                factoryService.messageUpdater("Not enough fruit in the storage");
+            } else if(sugarAmount<1){
+                factoryService.messageUpdater("Not enough sugar in the storage");
+            } else if(factoryService.getProductivity()<1){
+                factoryService.messageUpdater("Not enough productivity! Start a new month or hire more workers!");
             }
         }
         factoryService.messageUpdater("You produced " + realProduced + " of " + name);
@@ -50,15 +56,15 @@ public class ProductService {
             }
         }
         if (price > maximumSellPrice) {
-            System.out.println("Too expensive");
+            factoryService.messageUpdater("Too expensive");
         } else if (productAmount < amount) {
-            System.out.println("Not enough product in the storage");
+            factoryService.messageUpdater("Not enough product in the storage");
         } else {
             Double random = Math.random();
             Integer sold = (int) Math.floor(amount * random);
             factoryService.setMoney(factoryService.getMoney() + (sold * price));
             removeProduct(product.getName(), sold);
-            factoryService.messageUpdater("You sold " + sold + " of " + name + " for "+ (sold*price));
+            factoryService.messageUpdater("You sold " + sold + " " + name + " for "+ (sold*price)+" HUF");
         }
 
         return factoryService.getMoney();

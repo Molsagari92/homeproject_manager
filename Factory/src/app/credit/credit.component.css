@@ -14,14 +14,11 @@
 
 table {
   font-family: "Merriweather Sans", sans-serif;
-  margin: 0px;
-  padding: 0px;
 }
 
 .infos {
   font-size: 85%;
   text-align: center;
-  width: 400px;
 }
 
 button {
@@ -94,22 +91,11 @@ tr {
   margin-top: 15px;
 }
 
-.tdbase {
-  width: 400px;
-  text-align: center;
-  margin: 0px;
-  padding: 0px;
-}
-
-.tdoptions {
-  width: 700px;
-}
-
-.haveto {
-  width: 100px;
-}
-
 body {
-  background-color: wheat;
-  height: 700px;
+  text-align: center;
+  font-size: 30px;
+}
+
+div {
+  margin: 50px;
 }

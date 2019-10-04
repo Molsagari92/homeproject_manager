@@ -21,7 +21,7 @@ export class ResponseHttpInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((e, c) => {
         if (e.status == 403) {
-          this.router.navigate(["/"]);
+          this.router.navigate(["/rules"]);
         }
         return of(new HttpResponse<any>());
       })

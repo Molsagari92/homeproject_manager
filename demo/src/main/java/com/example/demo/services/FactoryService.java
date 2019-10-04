@@ -70,7 +70,7 @@ public class FactoryService {
 
     public void startTurn() {
         workers = factory.getWorkers();
-        money = factory.getAssets() - factory.getWorkers() * 50000;
+        money = factory.getAssets();
         productivity = factory.getProductivity();
         factory.setRoundCounter(factory.getRoundCounter() + 1);
         messageUpdater("You started round " + factory.getRoundCounter());

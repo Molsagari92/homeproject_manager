@@ -32,7 +32,7 @@ public class MaterialService {
                 realBought++;
             }
         }
-        factoryService.messageUpdater("You bought "+ realBought + " of "+ name+" for "+material.getPrice()*realBought);
+        factoryService.messageUpdater("You bought "+ realBought + " of "+ name+" for "+material.getPrice()*realBought+" HUF");
         return factoryService.getMoney();
     }
 

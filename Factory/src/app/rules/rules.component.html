@@ -7,7 +7,7 @@
 
   <h4>Here are the rules:</h4>
   <ul>
-    <li>Your starter amount of is: 1 000 000 HUF.</li>
+    <li>Your starter amount of money is: 1 000 000 HUF.</li>
     <li>The salary of a worker for a month: 50 000 HUF.</li>
     <li>A worker can produce 30 units of product in a month.</li>
     <li>One round represents a month.</li>
@@ -24,23 +24,24 @@
       You can sell the products. Attention: the maximal price is 250% of the
       production cost.
     </li>
-    <li>
-      You can advertise your factory's products, it improves the sales but it
-      costs money.
-    </li>
     <li>You can repeat the steps above until your resources are enough.</li>
     <li>After that you have to close the month and everything starts again.</li>
   </ul>
   <div class="wrapper">
-    <a routerLink="game">
+    <a routerLink="../game">
       <button
-        class="button"
+        class="myButton"
         type="button"
         name="startGame"
         (click)="OnClickStartGame()"
       >
         Let's start!
-      </button>
-    </a>
+      </button> </a
+    ><br />
+    <a routerLink=""
+      ><button class="myButton" type="button" name="menu">
+        Return to main menu
+      </button></a
+    >
   </div>
 </body>
