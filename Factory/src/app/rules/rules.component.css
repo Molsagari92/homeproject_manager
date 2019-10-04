@@ -110,3 +110,10 @@ ul {
 tr {
   margin-top: 15px;
 }
+
+body {
+  padding: auto;
+  text-align: center;
+  background-color: wheat;
+  height: 750px;
+}

@@ -94,6 +94,9 @@ tr {
 body {
   text-align: center;
   font-size: 30px;
+  margin: 0px;
+  background-color: wheat;
+  height: 750px;
 }
 
 div {

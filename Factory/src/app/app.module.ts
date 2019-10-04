@@ -10,14 +10,16 @@ import { FormsModule } from "@angular/forms";
 import { ResponseHttpInterceptor } from "./response.interceptor";
 import { MenuComponent } from "./menu/menu.component";
 import { CreditComponent } from "./credit/credit.component";
-import { WinnerComponent } from './winner/winner.component';
-import { LoserComponent } from './loser/loser.component';
+import { WinnerComponent } from "./winner/winner.component";
+import { LoserComponent } from "./loser/loser.component";
 
 const route: Routes = [
   { path: "", component: MenuComponent },
   { path: "rules", component: RulesComponent },
   { path: "game", component: GameComponent },
-  { path: "credit", component: CreditComponent }
+  { path: "credit", component: CreditComponent },
+  { path: "game/winner", component: WinnerComponent },
+  { path: "game/loser", component: LoserComponent }
 ];
 
 @NgModule({

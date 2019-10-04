@@ -121,16 +121,7 @@
 
       <td class="tdoptions">
         <h3>Options</h3>
-        <button
-          class="myButton"
-          type="button"
-          name="close"
-          (click)="OnClickEndTurn()"
-          (click)="IsLoser()"
-          (click)="IsWinner()"
-        >
-          Start a new month!</button
-        ><br />
+        <br />
         <a routerLink=""
           ><button
             class="myButton"
@@ -183,7 +174,18 @@
           (click)="OnClickSell()"
           (click)="IsWinner()"
         >
-          Sell selected jam
+          Sell selected jam</button
+        ><br />
+        <br />
+        <button
+          class="myButton"
+          type="button"
+          name="close"
+          (click)="OnClickEndTurn()"
+          (click)="IsLoser()"
+          (click)="IsWinner()"
+        >
+          Start a new month!
         </button>
       </td>
     </tr>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { SpringService } from "../spring.service";
 import { Observable, forkJoin } from "rxjs";
-import { RouteConfigLoadEnd, Router } from "@angular/router";
+import { RouteConfigLoadEnd, Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-game",
@@ -9,7 +9,11 @@ import { RouteConfigLoadEnd, Router } from "@angular/router";
   styleUrls: ["./game.component.css"]
 })
 export class GameComponent implements OnInit {
-  constructor(private springService: SpringService, private router: Router) {}
+  constructor(
+    private springService: SpringService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   data: any = [];
   materials: number[] = [];
@@ -131,13 +135,13 @@ export class GameComponent implements OnInit {
 
   IsWinner() {
     if (this.data[1] >= 2000000) {
-      alert("Congratulation, you won! :)");
+      this.router.navigate(["winner"], { relativeTo: this.route });
     }
   }
 
   IsLoser() {
     if (this.data[1] <= 0) {
-      alert("You lost! :(");
+      this.router.navigate(["loser"], { relativeTo: this.route });
     }
   }
 }
