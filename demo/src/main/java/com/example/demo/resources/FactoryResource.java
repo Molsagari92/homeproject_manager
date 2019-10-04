@@ -1,5 +1,7 @@
 package com.example.demo.resources;
 
+import com.example.demo.Turn;
+import com.example.demo.TurnService;
 import com.example.demo.model.DTOs.BuyDTO;
 import com.example.demo.model.DTOs.ProduceDTO;
 import com.example.demo.model.DTOs.SellDTO;
@@ -22,6 +24,9 @@ public class FactoryResource {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private TurnService turnService;
+
 
     @GetMapping("/startmonth")
     public void startMonth() {
@@ -31,6 +36,8 @@ public class FactoryResource {
     @GetMapping("/endmonth")
     public void endMonth() {
         factoryService.endTurn();
+        Turn turn = new Turn(factoryService.getFactory().getRoundCounter().toString(), factoryService.getFactory().getAssets().toString(), factoryService.getFactory().getWorkers().toString(), factoryService.getFactory().getProductivity().toString());
+        turnService.save(turn);
     }
 
     @GetMapping("/getbasics")
